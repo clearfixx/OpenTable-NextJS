@@ -17,6 +17,7 @@ module.exports = {
       "2xsm": "10px",
       "3xsm": "8px",
       "5xl" : "38px",
+      "7xl" : "70px",
     }
   },
   plugins: [],

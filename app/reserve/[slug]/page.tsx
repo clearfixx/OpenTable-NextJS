@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/navbar/navbar";
+import Navbar from "@/app/components/Navbar/Navbar";
 
 const ReservationPage = () => {
   return (

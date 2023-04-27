@@ -3,7 +3,7 @@ import { FC } from "react";
 import Image from "next/image";
 import imagePlaceholder from "./31852905.jpg";
 
-const ItemCard: FC = () => {
+const RestaurantCard: FC = () => {
   return (
     <>
       {/* CARD */}
@@ -36,4 +36,4 @@ const ItemCard: FC = () => {
   );
 };
 
-export default ItemCard;
+export default RestaurantCard;

@@ -1,4 +1,4 @@
-import Navbar from "@/app/components/navbar/navbar";
+import Navbar from "@/app/components/Navbar/Navbar";
 import Link from "next/link";
 
 const RestaurantMenu = () => {
