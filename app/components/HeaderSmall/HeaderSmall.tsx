@@ -66,22 +66,24 @@ const HeaderSmall: FC = () => {
             <a href="" onClick={toggleVisible}>
               EN <IconIcDowm width="20px" height="20px" />
             </a>
-            <ul
-              className={`${styles.small_header_submenu} ${
-                visible ? "opened" : "hidden"
-              }`}
-            >
-              {headerLinks.map((link: IHeaderLinks) => {
-                return (
-                  <li
-                    key={link.id}
-                    className={link.active ? styles.active : ""}
-                  >
-                    <a href={link.href}>{link.name}</a>
-                  </li>
-                );
-              })}
-            </ul>
+            {visible && (
+              <ul
+                className={`${styles.small_header_submenu} ${
+                  visible ? "opened" : "hidden"
+                }`}
+              >
+                {headerLinks.map((link: IHeaderLinks) => {
+                  return (
+                    <li
+                      key={link.id}
+                      className={link.active ? styles.active : ""}
+                    >
+                      <a href={link.href}>{link.name}</a>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </li>
         </ul>
       </nav>
