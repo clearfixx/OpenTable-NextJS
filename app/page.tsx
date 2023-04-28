@@ -26,8 +26,9 @@ const Home: FC = () => {
         <Navbar />
         <main>
           <Header />
-          <div className="py-3 px-36 mt-10 flex flex-wrap justify-between">
-            {cardContent()}
+          <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
+            {/* {cardContent()} */}
+            <RestaurantCard />
           </div>
         </main>
       </main>
