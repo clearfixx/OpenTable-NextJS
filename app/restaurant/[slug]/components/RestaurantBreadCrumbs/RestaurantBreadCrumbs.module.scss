@@ -1,0 +1,12 @@
+.breadcrumbs {
+  @apply relative border-t-[1px];
+  ol {
+    @apply flex items-center;
+    li {
+      @apply relative;
+      a {
+        @apply block p-3 mr-3 text-blue-300;
+      }
+    }
+  }
+}

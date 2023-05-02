@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
-import Logo from "../Logo/logo";
+import Logo from "../Logo/Logo";
 import { useRouter } from "next/navigation";
 import HeaderSmall from "../HeaderSmall/HeaderSmall";
 

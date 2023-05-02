@@ -1,0 +1,11 @@
+.layout {
+  @apply flex m-auto w-2/3 justify-between items-start -mt-11;
+}
+
+.restaurant_detail_wrapper {
+  @apply bg-white w-[70%] rounded p-3 shadow;
+}
+
+.reservation_card_wrapper {
+  @apply w-[27%] relative;
+}

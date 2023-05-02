@@ -1,37 +1,50 @@
-import { FC } from "react";
 import { Inter } from "next/font/google";
-import Navbar from "./components/Navbar/Navbar";
 import RestaurantCard from "./components/RestaurantCard/RestaurantCard";
 import Header from "./components/Header/Header";
+import { PrismaClient } from "@prisma/client";
+import IRestaurantCard from "./interfaces/RestaurantCardInterfaces/RestaurantCardInterfaces";
 
-const inter = Inter({ subsets: ["latin"] });
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: "postgres://postgres:GevWypFxKDYK9DIp@db.cwkbfbpzvckbgcjpnvap.supabase.co:6543/postgres",
+    },
+  },
+});
 
-const cardContent = () => {
-  let content = [];
-  const itemsCount: number = 12;
-  const key = (length: number) => {
-    return Math.random().toString(36).substr(2, length);
-  };
-  for (let i = 0; i < itemsCount; i++) {
-    const item = <RestaurantCard key={key(2).toString()} />;
-    content.push(item);
-  }
-  return content;
+const fetchRestaurants = async (): Promise<IRestaurantCard[]> => {
+  const restaurants = await prisma.restaurant.findMany({
+    select: {
+      id: true,
+      name: true,
+      main_image: true,
+      cuisine: true,
+      location: true,
+      price: true,
+      slug: true,
+    },
+  });
+
+  return restaurants;
 };
 
-const Home: FC = () => {
+const inter = Inter({ subsets: ["latin"], variable: "--inter-font" });
+
+const Home = async () => {
+  const restaurants = await fetchRestaurants();
+  // console.log({ restaurants });
   return (
-    <main className="bg-gray-100 min-h-screen w-full">
-      <main className="max-w-screen-2xl m-auto bg-white">
-        <Navbar />
-        <main>
-          <Header />
-          <div className="py-3 px-36 mt-10 flex flex-wrap justify-center">
-            {/* {cardContent()} */}
-            <RestaurantCard />
-          </div>
-        </main>
-      </main>
+    <main className={inter.variable}>
+      <Header />
+      <div className="py-3 px-10 mt-10 flex flex-wrap justify-center">
+        {/* {cardContent()} */}
+        {restaurants.map((restaurant) => (
+          <RestaurantCard
+            key={restaurant.id.toString()}
+            restaurant={restaurant}
+          />
+        ))}
+      </div>
     </main>
   );
 };

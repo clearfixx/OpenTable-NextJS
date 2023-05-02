@@ -1,7 +1,9 @@
+"use client";
+
 export default function ReservationCard() {
   return (
-    <div>
-      <div className="fixed w-[15%] bg-white rounded p-3 shadow">
+    <div className="relative">
+      <div className="absolute w-[100%] bg-white rounded p-3 shadow">
         <div className="text-center border-b pb-2 font-bold">
           <h4 className="mr-7 text-lg">Make a Reservation</h4>
         </div>

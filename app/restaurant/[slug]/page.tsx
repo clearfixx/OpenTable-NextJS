@@ -1,5 +1,3 @@
-import Navbar from "@/app/components/Navbar/Navbar";
-import RestaurantHeader from "./components/RestaurantHeader/RestaurantHeader";
 import RestaurantNavBar from "./components/RestaurantNavBar/RestaurantNavBar";
 import RestaurantTitle from "./components/RestaurantTitle/RestaurantTitle";
 import RestaurantRating from "./components/RestaurantRating/RestaurantRating";
@@ -7,28 +5,50 @@ import RestaurantDescription from "./components/RestaurantDescription/Restaurant
 import RestaurantImages from "./components/RestaurantImages/RestaurantImages";
 import RestaurantReviews from "./components/RestaurantReviews/RestaurantReviews";
 import ReservationCard from "./components/ReservationCard/ReservationCard";
+import { prisma } from "@/app/api/prismaClient";
+import { IRestaurantPage } from "@/app/interfaces/RestaurantPageInterfaces/RestaurantPageInterfaces";
+import styles from "./Layout.module.scss";
 
-const RestaurantDetail = () => {
+const fetchRestaurantBySlug = async (
+  slug: string
+): Promise<IRestaurantPage> => {
+  const restaurant = await prisma.restaurant.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      id: true,
+      name: true,
+      images: true,
+      description: true,
+      slug: true,
+      main_image: true,
+    },
+  });
+
+  if (!restaurant) {
+    throw new Error("Restaurant not found");
+  }
+
+  return restaurant;
+};
+
+const RestaurantDetail = async ({ params }: { params: { slug: string } }) => {
+  const restaurant = await fetchRestaurantBySlug(params.slug);
   return (
-    <main className="bg-gray-100 min-h-screen w-full">
-      <main className="max-w-screen-2xl m-auto bg-white">
-        <Navbar />
-        <RestaurantHeader />
-        <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
-          <div className="bg-white w-[70%] rounded p-3 shadow">
-            <RestaurantNavBar />
-            <RestaurantTitle />
-            <RestaurantRating />
-            <RestaurantDescription />
-            <RestaurantImages />
-            <RestaurantReviews />
-          </div>
-          <div className="w-[27%] relative text-reg">
-            <ReservationCard />
-          </div>
-        </div>
-      </main>
-    </main>
+    <>
+      <div className={styles.restaurant_detail_wrapper}>
+        <RestaurantNavBar slug={restaurant.slug} />
+        <RestaurantTitle name={restaurant.name} />
+        <RestaurantRating />
+        <RestaurantDescription description={restaurant.description} />
+        <RestaurantImages images={restaurant.images} name={restaurant.name} />
+        <RestaurantReviews />
+      </div>
+      <div className={styles.reservation_card_wrapper}>
+        <ReservationCard />
+      </div>
+    </>
   );
 };
 
