@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./RestaurantBreadCrumbs.module.scss";
 
 const BreadCrumbs = () => {
@@ -5,7 +6,7 @@ const BreadCrumbs = () => {
     <nav className={styles.breadcrumbs}>
       <ol>
         <li>
-          <a href="/">Home</a>
+          <Link href="/">Home</Link>
         </li>
         <li>
           <a href="#">Restaurants</a>

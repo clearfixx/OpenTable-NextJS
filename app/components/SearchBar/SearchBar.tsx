@@ -2,9 +2,8 @@
 import { ChangeEvent, FC, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const SearchBar: FC = () => {
+const SearchBar = () => {
   const router = useRouter();
-
   const [location, setLocation] = useState("");
   return (
     <div className="text-left text-lg py-3 m-auto flex justify-center">
@@ -38,7 +37,8 @@ const SearchBar: FC = () => {
         className="rounded bg-red-600 px-9 py-2 text-white"
         onClick={() => {
           if (location === "") return;
-          router.push("/search");
+          router.push(`/search/?city=${location}`);
+          setLocation("");
         }}
       >
         Let&#39;s go
