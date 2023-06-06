@@ -6,29 +6,53 @@ import { ISearchPageInterfaces } from "../interfaces/SearchPageInterfaces/Search
 import Link from "next/link";
 import { PRICE } from "@prisma/client";
 
-const fetchRestaurantByCity = (
-  city: string
-): Promise<ISearchPageInterfaces[]> => {
-  return prisma.restaurant.findMany({
-    where: {
-      location: {
-        name: {
-          equals: city?.toLowerCase(),
-        },
+interface ISearchParams {
+  city?: any;
+  cuisine?: string;
+  price?: PRICE;
+}
+
+const fetchRestaurantByCity = (searchParams: ISearchParams) => {
+  const where: any = {};
+
+  if (searchParams.city) {
+    const location = {
+      name: {
+        equals: searchParams.city.toLowerCase(),
       },
-    },
-    select: {
-      id: true,
-      name: true,
-      main_image: true,
-      cuisine: true,
-      location: true,
-      price: true,
-      slug: true,
-    },
-    orderBy: {
-      created_at: "asc",
-    },
+    };
+    where.location = location;
+  }
+
+  if (searchParams.cuisine) {
+    const cuisine = {
+      name: {
+        equals: searchParams.cuisine.toLowerCase(),
+      },
+    };
+    where.cuisine = cuisine;
+  }
+
+  if (searchParams.price) {
+    const price = {
+      equals: searchParams.price,
+    };
+    where.price = price;
+  }
+
+  const select = {
+    id: true,
+    name: true,
+    main_image: true,
+    cuisine: true,
+    location: true,
+    price: true,
+    slug: true,
+  };
+
+  return prisma.restaurant.findMany({
+    where,
+    select,
   });
 };
 
@@ -40,12 +64,8 @@ const fetchCuisines = async () => {
   return prisma.cuisine.findMany({});
 };
 
-const Search = async ({
-  searchParams,
-}: {
-  searchParams: { city?: string; cuisine?: string; price?: PRICE };
-}) => {
-  const restaurants = await fetchRestaurantByCity(searchParams.city);
+const Search = async ({ searchParams }: { searchParams: ISearchParams }) => {
+  const restaurants = await fetchRestaurantByCity(searchParams);
   const locations = await fetchLocations();
   const cuisines = await fetchCuisines();
   return (
