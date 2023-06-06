@@ -11,3 +11,11 @@ export interface ISearchPageInterfaces {
   slug: string;
   
 }
+
+export interface ISearchParams {
+
+  city?: any;
+  cuisine?: string;
+  price?: PRICE;
+
+}

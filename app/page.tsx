@@ -15,6 +15,7 @@ const fetchRestaurants = async (): Promise<IRestaurantCard[]> => {
       location: true,
       price: true,
       slug: true,
+      reviews: true,
     },
   });
 

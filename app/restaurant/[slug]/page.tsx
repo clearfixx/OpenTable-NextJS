@@ -23,6 +23,7 @@ const fetchRestaurantBySlug = async (
       description: true,
       slug: true,
       main_image: true,
+      reviews: true,
     },
   });
 
@@ -40,10 +41,10 @@ const RestaurantDetail = async ({ params }: { params: { slug: string } }) => {
       <div className={styles.restaurant_detail_wrapper}>
         <RestaurantNavBar slug={restaurant.slug} />
         <RestaurantTitle name={restaurant.name} />
-        <RestaurantRating />
+        <RestaurantRating reviews={restaurant.reviews} />
         <RestaurantDescription description={restaurant.description} />
         <RestaurantImages images={restaurant.images} name={restaurant.name} />
-        <RestaurantReviews />
+        <RestaurantReviews reviews={restaurant.reviews} />
       </div>
       <div className={styles.reservation_card_wrapper}>
         <ReservationCard />

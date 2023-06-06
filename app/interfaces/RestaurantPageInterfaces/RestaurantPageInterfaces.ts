@@ -1,3 +1,5 @@
+import { Review } from "@prisma/client";
+
 export interface IRestaurantPage {
 
   id: number;
@@ -6,5 +8,6 @@ export interface IRestaurantPage {
   description: string;
   slug: string;
   main_image: string;
+  reviews: Review[];
   
 }

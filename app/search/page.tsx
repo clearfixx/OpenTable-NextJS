@@ -2,15 +2,12 @@ import SearchRestaurantCard from "./components/SearchRestaurantCard/SearchRestau
 import SearchHeader from "./components/SearchHeader/SearchHeader";
 import SearchSidebar from "./components/SearchSidebar/SearchSidebar";
 import { prisma } from "../api/prismaClient";
-import { ISearchPageInterfaces } from "../interfaces/SearchPageInterfaces/SearchPageInterfaces";
+import {
+  ISearchPageInterfaces,
+  ISearchParams,
+} from "../interfaces/SearchPageInterfaces/SearchPageInterfaces";
 import Link from "next/link";
 import { PRICE } from "@prisma/client";
-
-interface ISearchParams {
-  city?: any;
-  cuisine?: string;
-  price?: PRICE;
-}
 
 const fetchRestaurantByCity = (searchParams: ISearchParams) => {
   const where: any = {};
@@ -48,6 +45,7 @@ const fetchRestaurantByCity = (searchParams: ISearchParams) => {
     location: true,
     price: true,
     slug: true,
+    reviews: true,
   };
 
   return prisma.restaurant.findMany({
