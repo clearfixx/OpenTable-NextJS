@@ -7,12 +7,12 @@ const RestaurantLayout = ({
   params,
 }: {
   children: React.ReactNode;
-  params: { slug: string };
+  params: { slug: string; name: string };
 }) => {
   return (
     <>
       <main>
-        <BreadCrumbs />
+        <BreadCrumbs params={params} />
         <RestaurantHeader name={params.slug} />
         <div className={styles.layout}>{children}</div>
       </main>

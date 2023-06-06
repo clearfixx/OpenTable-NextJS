@@ -3,14 +3,7 @@ import RestaurantCard from "./components/RestaurantCard/RestaurantCard";
 import Header from "./components/Header/Header";
 import { PrismaClient } from "@prisma/client";
 import IRestaurantCard from "./interfaces/RestaurantCardInterfaces/RestaurantCardInterfaces";
-
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: "postgres://postgres:GevWypFxKDYK9DIp@db.cwkbfbpzvckbgcjpnvap.supabase.co:6543/postgres",
-    },
-  },
-});
+import { prisma } from "./api/prismaClient";
 
 const fetchRestaurants = async (): Promise<IRestaurantCard[]> => {
   const restaurants = await prisma.restaurant.findMany({

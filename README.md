@@ -15,3 +15,7 @@ Just clone this repo and do this command in your terminal:
 and
 
     npm run dev
+
+if you changed db configuration just do in terminal:
+
+    npx prisma db push
