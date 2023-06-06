@@ -1,35 +1,102 @@
-import { FC } from "react";
+import { Cuisine, Location, PRICE } from "@prisma/client";
+import styles from "./Searchsidebar.module.scss";
+import Link from "next/link";
 
-const SearchSidebar: FC = () => {
+const SearchSidebar = ({
+  locations,
+  cuisines,
+  searchParams,
+}: {
+  locations: Location[];
+  cuisines: Cuisine[];
+  searchParams: { city?: string; cuisine?: string; price?: PRICE };
+}) => {
+  const priceClassName: string =
+    "border w-full text-reg text-center font-light p-2 hover:border-[1px] hover:border-black";
+  const prices = [
+    {
+      price: PRICE.CHEAP,
+      label: "$",
+      className: `${priceClassName} rounded-l`,
+    },
+    {
+      price: PRICE.REGULAR,
+      label: "$$",
+      className: `${priceClassName}`,
+    },
+    {
+      price: PRICE.EXPENSIVE,
+      label: "$$$",
+      className: `${priceClassName} rounded-r`,
+    },
+  ];
   return (
-    <aside className="w-1/5">
-      <div className="border-b pb-4">
-        <h1 className="mb-2">Region</h1>
-        <p className="font-light text-reg">Toronto</p>
-        <p className="font-light text-reg">Ottawa</p>
-        <p className="font-light text-reg">Montreal</p>
-        <p className="font-light text-reg">Hamilton</p>
-        <p className="font-light text-reg">Kingston</p>
-        <p className="font-light text-reg">Niagara</p>
+    <aside className={styles.aside}>
+      <div className={styles.query_block}>
+        <h1 className={styles.query_block_title}>Region</h1>
+        {locations.map((location: Location) => (
+          <Link
+            href={{
+              pathname: "/search",
+              query: {
+                ...searchParams,
+                city: location.name,
+              },
+            }}
+            key={location.id.toString()}
+            className={styles.search_query_item}
+          >
+            {location.name}
+          </Link>
+        ))}
       </div>
-      <div className="border-b pb-4 mt-3">
-        <h1 className="mb-2">Cuisine</h1>
-        <p className="font-light text-reg">Mexican</p>
-        <p className="font-light text-reg">Italian</p>
-        <p className="font-light text-reg">Chinese</p>
+      <div className={styles.query_block}>
+        <h1 className={styles.query_block_title}>Cuisine</h1>
+        {cuisines.map((cuisine: Cuisine) => (
+          <Link
+            href={{
+              pathname: "/search",
+              query: {
+                ...searchParams,
+                cuisine: cuisine.name,
+              },
+            }}
+            key={cuisine.id.toString()}
+            className={styles.search_query_item}
+          >
+            {cuisine.name}
+          </Link>
+        ))}
       </div>
-      <div className="mt-3 pb-4">
-        <h1 className="mb-2">Price</h1>
+      <div className={styles.query_block}>
+        <h1 className={styles.query_block_title}>Price</h1>
         <div className="flex">
-          <button className="border w-full text-reg font-light rounded-l p-2 hover:border-[1px] hover:border-black">
-            $
-          </button>
-          <button className="border-r border-t border-b w-full text-reg font-light p-2 hover:border-[1px] hover:border-black">
-            $$
-          </button>
-          <button className="border-r border-t border-b w-full text-reg font-light p-2 rounded-r hover:border-[1px] hover:border-black">
-            $$$
-          </button>
+          {prices.map(
+            ({
+              price,
+              label,
+              className,
+            }: {
+              price: PRICE;
+              label: string;
+              className: string;
+            }) => (
+              <>
+                <Link
+                  href={{
+                    pathname: "/search",
+                    query: {
+                      ...searchParams,
+                      price,
+                    },
+                  }}
+                  className={className}
+                >
+                  {label}
+                </Link>
+              </>
+            )
+          )}
         </div>
       </div>
     </aside>

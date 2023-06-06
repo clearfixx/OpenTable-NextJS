@@ -16,10 +16,11 @@ module.exports = {
     fontSize: {
       "2xsm": "10px",
       "3xsm": "8px",
+      "3xl" : "20px",
       "4xl" : "25px",
       "5xl" : "38px",
       "6xl" : "48px",
-      "7xl" : "70px",
+      "7xl" : "55px",
     }
   },
   plugins: [],
