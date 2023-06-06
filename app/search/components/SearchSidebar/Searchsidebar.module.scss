@@ -1,0 +1,16 @@
+.aside {
+  @apply w-1/5 mr-5;
+
+  .query_block {
+    @apply border-b pb-4;
+
+    .query_block_title {
+      @apply mb-2 mt-2 text-3xl font-semibold;
+
+    }
+    .search_query_item {
+      @apply font-light flex capitalize py-1 w-full hover:font-semibold transition-all ease-in-out duration-200;
+
+    }
+  }
+}

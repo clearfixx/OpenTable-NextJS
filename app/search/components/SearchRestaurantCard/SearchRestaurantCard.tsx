@@ -11,7 +11,7 @@ const RestaurantCard = ({ restaurant }: { restaurant: IRestaurantCard }) => {
         height={100}
         src={restaurant.main_image}
         alt={`${restaurant.name} cover image`}
-        className="w-44 rounded"
+        className="w-44 h-36 rounded"
       />
 
       <div className="pl-5">
@@ -22,9 +22,9 @@ const RestaurantCard = ({ restaurant }: { restaurant: IRestaurantCard }) => {
         </div>
         <div className="mb-9">
           <div className="font-light flex text-reg">
-            <p className="mr-4">
+            <span className="mr-4">
               <Price price={restaurant.price} />
-            </p>
+            </span>
             <p className="mr-4 capitalize">{restaurant.cuisine.name}</p>
             <p className="mr-4 capitalize">{restaurant.location.name}</p>
           </div>
