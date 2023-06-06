@@ -4,8 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['resizer.otstatic.com']
-  }
-}
+    domains: ["resizer.otstatic.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
