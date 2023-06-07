@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss";
 import Logo from "../Logo/Logo";
 import { useRouter } from "next/navigation";
 import HeaderSmall from "../HeaderSmall/HeaderSmall";
-import LoginModal from "../LoginModal/LoginModal";
+import AuthModal from "../AuthModal/AuthModal";
 
 const Navbar = () => {
   const router = useRouter();
@@ -19,8 +19,8 @@ const Navbar = () => {
         </Link>
         <div>
           <div className="flex">
-            <LoginModal isSignin={true} />
-            <LoginModal isSignin={false} />
+            <AuthModal isSignin={true} />
+            <AuthModal isSignin={false} />
           </div>
         </div>
       </nav>
