@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Price from "@/app/components/Price/Price";
 import { calculateReviewRatingAverage } from "@/utils/CalculateReviewRating/CalculateReviewRatingAverage";
+import StarsComponent from "@/app/components/StarsComponent/StarsComponent";
 
 const RestaurantCard = ({ restaurant }: { restaurant: IRestaurantCard }) => {
   const renderRatingText = () => {
@@ -25,8 +26,10 @@ const RestaurantCard = ({ restaurant }: { restaurant: IRestaurantCard }) => {
 
       <div className="pl-5">
         <h2 className="text-3xl">{restaurant.name}</h2>
-        <div className="flex items-start">
-          <div className="flex mb-2">*****</div>
+        <div className="flex items-start items-center">
+          <div className="flex">
+            <StarsComponent reviews={restaurant.reviews} />
+          </div>
           <p className="ml-2 text-sm">{renderRatingText()}</p>
           <p className="ml-2">
             {restaurant.reviews.length} review

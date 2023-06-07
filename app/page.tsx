@@ -26,7 +26,6 @@ const inter = Inter({ subsets: ["latin"], variable: "--inter-font" });
 
 const Home = async () => {
   const restaurants = await fetchRestaurants();
-  // console.log({ restaurants });
   return (
     <main className={inter.variable}>
       <Header />

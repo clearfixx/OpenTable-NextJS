@@ -3,6 +3,7 @@ import { FC } from "react";
 import Image from "next/image";
 import { RestaurantCardProps } from "@/app/interfaces/RestaurantCardInterfaces/RestaurantCardInterfaces";
 import Price from "../Price/Price";
+import StarsComponent from "../StarsComponent/StarsComponent";
 
 const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
   return (
@@ -18,8 +19,10 @@ const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
           />
           <div className="p-1">
             <h3 className="font-bold text-2xl mb-2">{restaurant.name}</h3>
-            <div className="flex items-start">
-              <div className="flex mb-2">*****</div>
+            <div className="flex items-start items-center">
+              <div className="flex">
+                <StarsComponent reviews={restaurant.reviews} />
+              </div>
               <p className="ml-2">
                 {restaurant.reviews.length} review
                 {restaurant.reviews.length === 1 ? "" : "s"}

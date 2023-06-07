@@ -20,6 +20,7 @@
     "postcss": "8.4.23",
     "prisma": "^4.13.0",
     "react": "18.2.0",
+    "react-content-loader": "^6.2.1",
     "react-dom": "18.2.0",
     "sass": "^1.62.1",
     "sharp": "^0.32.1",
@@ -29,5 +30,7 @@
   "devDependencies": {
     "ts-node": "^10.9.1"
   },
-  "prisma": { "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts" }
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  }
 }
