@@ -32,6 +32,11 @@ body {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.sticky {
+  position: sticky !important;
+  top: 0;
+}
+
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;

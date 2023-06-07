@@ -8,6 +8,8 @@ import ReservationCard from "./components/ReservationCard/ReservationCard";
 import { prisma } from "@/app/api/prismaClient";
 import { IRestaurantPage } from "@/app/interfaces/RestaurantPageInterfaces/RestaurantPageInterfaces";
 import styles from "./Layout.module.scss";
+import { notFound } from "next/navigation";
+import ReservationCardWrapper from "./components/ReservationCardWrapper/ReservationCardWrapper";
 
 const fetchRestaurantBySlug = async (
   slug: string
@@ -28,7 +30,7 @@ const fetchRestaurantBySlug = async (
   });
 
   if (!restaurant) {
-    throw new Error("Restaurant not found");
+    notFound();
   }
 
   return restaurant;
@@ -46,9 +48,7 @@ const RestaurantDetail = async ({ params }: { params: { slug: string } }) => {
         <RestaurantImages images={restaurant.images} name={restaurant.name} />
         <RestaurantReviews reviews={restaurant.reviews} />
       </div>
-      <div className={styles.reservation_card_wrapper}>
-        <ReservationCard />
-      </div>
+      <ReservationCardWrapper />
     </>
   );
 };
