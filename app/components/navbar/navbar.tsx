@@ -6,16 +6,23 @@ import Logo from "../Logo/Logo";
 import { useRouter } from "next/navigation";
 import HeaderSmall from "../HeaderSmall/HeaderSmall";
 import AuthModal from "../AuthModal/AuthModal";
+import Image from "next/image";
+import logo from "@/public/images/logo.svg";
 
 const Navbar = () => {
   const router = useRouter();
+
+  const colors = {
+    firstFill: "#ee5253",
+    secondFill: "#333",
+  };
 
   return (
     <>
       <HeaderSmall />
       <nav className={`${styles.navbar}`}>
         <Link href="/" className="font-bold text-gray-700 text-2xl block w-36">
-          <Logo firstFill="#ee5253" secondFill="#333" />
+          <Image src={logo} alt="" width={144} height={32} />
         </Link>
         <div>
           <div className="flex">

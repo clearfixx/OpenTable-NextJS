@@ -68,6 +68,8 @@ model User {
   reviews    Review[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@unique([email])
 }
 
 model Review {

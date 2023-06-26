@@ -15,7 +15,7 @@ export const metadata: TMetadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <main className="bg-gray-100 min-h-screen w-full">
           <main className="max-w-screen-2xl m-auto bg-white">
